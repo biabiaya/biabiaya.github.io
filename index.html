@@ -220,7 +220,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Accueil</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Startseite</a>
 
   </li>
         
@@ -237,7 +237,7 @@
 
     
 
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>A propos</a>
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>Über</a>
 
   </li>
         
@@ -271,7 +271,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>Categories</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>Kategorien</a>
 
   </li>
         
@@ -288,7 +288,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archiv</a>
 
   </li>
 
@@ -324,6 +324,190 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/06/Xpath/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="biabia"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Study && Life"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/06/Xpath/" class="post-title-link" itemprop="url">Xpath</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-01-06 00:00:00 / Updated at: 21:57:45" itemprop="dateCreated datePublished" datetime="2019-01-06T00:00:00+08:00">2019-01-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>如果元素的ID不唯一，或者是动态的，或者name以及linktext属性值也不唯一，我们就需要考虑用xpath来查找元素，然后再对元素执行操作</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><ul>
+<li>//tag name[@attibute=”value”]</li>
+</ul>
+<h3 id="绝对路径"><a href="#绝对路径" class="headerlink" title="绝对路径"></a>绝对路径</h3><ul>
+<li>Xpath的绝对路径用单斜线 “/”</li>
+<li>如定位慕课网购物车这个元素：/html/body/div[1]/div/div[2]/ul/li[2]/a/span[2]</li>
+</ul>
+<h3 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h3><ul>
+<li>Xpath的绝对路径用单斜线 “//”</li>
+<li>如定位慕课网购物车这个元素：//li[@id=”shop-cart”]/a/span[2]</li>
+</ul>
+<h3 id="“-”和-“-”的区别"><a href="#“-”和-“-”的区别" class="headerlink" title="“/”和 “//”的区别"></a>“/”和 “//”的区别</h3><ul>
+<li>“/” ：元素是上一级节点的子节点中的一个，不能跳级</li>
+<li>“//” ：下级任何子节点或者任何嵌套子节点中的一个，可以跳级</li>
+<li>路径里的“*”是通配符，我们用的时候要写具体标签名</li>
+</ul>
+<h3 id="如何构建一个有效的Xpath？"><a href="#如何构建一个有效的Xpath？" class="headerlink" title="如何构建一个有效的Xpath？"></a>如何构建一个有效的Xpath？</h3><p>以慕课网购物车这个元素的相对路径为例：//li[@id=”shop-cart”]/a/span[2]</p>
+<ul>
+<li>这会查找整个html网页下id值为shop-cart的li标签下的a标签下的第二个span标签</li>
+<li>注意，/a/span[2]用的是“/”，表示在li标签后只能一层一层的往下查找，先找到li标签下的a标签，然后再找a标签下的第二个span标签</li>
+<li>如果节点结构改变了，比如a标签被其他的标签替换掉了，那么这个路径就失效了，因为它无法跳过a标签直接查找span标签</li>
+<li>所以我们要对这个相对路径进行优化：//li[@id=”shop-cart”]//span[2]，将a标签替换成“//”，用优化后的路径进行元素定位时，会跳过a标签直接查找到li标签下的第二个span标签，此时即使节点结构改变了，该路径还是有效的，因为已经跳过了目标标签外的其他标签。</li>
+</ul>
+<h3 id="用Text构建有效的Xpath"><a href="#用Text构建有效的Xpath" class="headerlink" title="用Text构建有效的Xpath"></a>用Text构建有效的Xpath</h3><ul>
+<li>语法：//tag name[text()=’文本内容’]</li>
+<li>以定位慕课网“忘记密码”链接为例：//a[text()=’忘记密码’]</li>
+<li>注意，text()=”文本内容”里的文本内容要与元素中的完全匹配</li>
+</ul>
+<h3 id="用Contains构建有效的Xpath"><a href="#用Contains构建有效的Xpath" class="headerlink" title="用Contains构建有效的Xpath"></a>用Contains构建有效的Xpath</h3><ul>
+<li>语法：//tag name[contains(attribute, ‘value’)]</li>
+<li>以定位慕课网“忘记密码”链接为例：//a[contains(text(), ‘忘记密码’)]</li>
+</ul>
+<h3 id="用StartsWith构建有效的Xpath"><a href="#用StartsWith构建有效的Xpath" class="headerlink" title="用StartsWith构建有效的Xpath"></a>用StartsWith构建有效的Xpath</h3><ul>
+<li>语法：//tag name[starts-with(attribute, ‘value’)]</li>
+<li>以定位class属性中以xa-emailOrPhone开头的元素为例：//input[starts-with(@class, ‘xa-emailOrPhone’)]</li>
+</ul>
+<h3 id="如何找父节点？"><a href="#如何找父节点？" class="headerlink" title="如何找父节点？"></a>如何找父节点？</h3><ul>
+<li>语法：xpath-to-some-element//parent::<tag></tag></li>
+</ul>
+<h3 id="如何找后面的平级节点？"><a href="#如何找后面的平级节点？" class="headerlink" title="如何找后面的平级节点？"></a>如何找后面的平级节点？</h3><ul>
+<li>语法：xpath-to-some-element//following-sibling::<tag></tag></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -378,7 +562,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
@@ -572,7 +756,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
@@ -720,8 +904,8 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
-                    <span class="site-state-item-name">articles</span>
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
               
@@ -743,8 +927,12 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
-                    <span class="site-state-item-name">tags</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">Tags</span>
                   
                 </div>
               
@@ -794,7 +982,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.7.1</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.7.1</div>
 
 
 
@@ -802,7 +990,7 @@
 
 
 
-  <div class="theme-info">Thème – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.7.0</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.7.0</div>
 
 
 
